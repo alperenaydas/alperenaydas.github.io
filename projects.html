@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Alperen Aydas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">
+                    <img src="images/icons/home.png" alt="Home" class="nav-icon">
+                </a>
+                <a href="projects.html" class="nav-link active">
+                    <img src="images/icons/projects.png" alt="Projects" class="nav-icon">
+                </a>
+                <a href="experiences.html" class="nav-link">
+                    <img src="images/icons/experiences.png" alt="Experiences" class="nav-icon">
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="page-header">
+            <h1>Projects</h1>
+            <p>Explore my game development journey through various projects</p>
+        </section>
+
+        <section class="projects-section">
+            <div class="section-header">
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-project="rise-of-heroes">
+                    <div class="project-image">
+                        <img src="images/projects/kop-title.png" alt="Rise of Heroes" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Rise of Heroes</h3>
+                        <p>Multiplayer 4X Strategy Game - Panteon</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="arcane-arena">
+                    <div class="project-image">
+                        <img src="images/projects/aa-title.webp" alt="Arcane Arena" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Arcane Arena</h3>
+                        <p>PvP Multiplayer Tower Defense Game - Panteon</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="raid-rush">
+                    <div class="project-image">
+                        <img src="images/projects/rr-title.webp" alt="Raid Rush" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Raid Rush</h3>
+                        <p>Tower Defense Game - Panteon</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="atos">
+                    <div class="project-image">
+                        <img src="images/projects/atos.gif" alt="ATOS" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>ATOS</h3>
+                        <p>2D/3D Simulation Puzzle Game - MagaraJam#3</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="last-session">
+                    <div class="project-image">
+                        <img src="images/projects/tls-title.png" alt="The Last Session" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>The Last Session</h3>
+                        <p>2D DnD Simulator - MagaraJam#5</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="caretaker">
+                    <div class="project-image">
+                        <img src="images/projects/caretaker.gif" alt="The Caretaker" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>The Caretaker</h3>
+                        <p>2D Platformer - MagaraJam2025</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="beat-menace">
+                    <div class="project-image">
+                        <img src="images/projects/beat-menace.png" alt="Beat Menace" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Beat Menace</h3>
+                        <p>2.5D Rhythm Shooter - MagaraJam2023</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+
+                <div class="project-card" data-project="judgement-day">
+                    <div class="project-image">
+                        <img src="images/projects/judgement-title.png" alt="Judgement Day" class="project-img">
+                    </div>
+                    <div class="project-info">
+                        <h3>Judgement Day</h3>
+                        <p>Multiplayer Beat 'Em Up Mobile Game - University Project</p>
+                    </div>
+                    <div class="project-arrow">→</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <h2 class="footer-title">Alpik</h2>
+            <div class="footer-nav">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="projects.html" class="footer-link">Projects</a>
+                <a href="experiences.html" class="footer-link">Experiences</a>
+                <a href="resume.pdf" class="footer-link" download="Alperen_Aydas_Resume.pdf">Resume</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImage" src="" alt="Project Image" class="modal-header-image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalTitle">Project Title</h2>
+                    <p id="modalDescription">Project description</p>
+                    <div id="modalDetails"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

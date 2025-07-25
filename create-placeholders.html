@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder Image Generator</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #000;
+            margin-bottom: 30px;
+        }
+        .project {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+        }
+        .project h3 {
+            margin-bottom: 10px;
+            color: #000;
+        }
+        .project p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        canvas {
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background: #333;
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #000;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Portfolio Placeholder Images Generator</h1>
+        <p>Click "Generate" to create placeholder images for your projects. Right-click and "Save image as" to download.</p>
+        
+        <div class="project">
+            <h3>Rise of Heroes</h3>
+            <p>Multiplayer 4X Strategy Game - Panteon</p>
+            <canvas id="rise-of-heroes" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('rise-of-heroes', 'Rise of Heroes', '#667eea')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>Arcane Arena</h3>
+            <p>PvP Multiplayer Tower Defense Game - Panteon</p>
+            <canvas id="arcane-arena" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('arcane-arena', 'Arcane Arena', '#764ba2')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>Raid Rush</h3>
+            <p>Tower Defense Game - Panteon</p>
+            <canvas id="raid-rush" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('raid-rush', 'Raid Rush', '#f093fb')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>ATOS</h3>
+            <p>2D/3D Simulation Puzzle Game - MagaraJam#3</p>
+            <canvas id="atos" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('atos', 'ATOS', '#4facfe')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>The Last Session</h3>
+            <p>2D DnD Simulator - MagaraJam#5</p>
+            <canvas id="last-session" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('last-session', 'The Last Session', '#43e97b')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>The Caretaker</h3>
+            <p>2D Platformer - MagaraJam2025</p>
+            <canvas id="caretaker" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('caretaker', 'The Caretaker', '#fa709a')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>Beat Menace</h3>
+            <p>2.5D Rhythm Shooter - MagaraJam2023</p>
+            <canvas id="beat-menace" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('beat-menace', 'Beat Menace', '#ffecd2')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>Judgement Day</h3>
+            <p>Multiplayer Beat 'Em Up Mobile Game - University Project</p>
+            <canvas id="judgement-day" width="300" height="200"></canvas>
+            <br>
+            <button onclick="generateImage('judgement-day', 'Judgement Day', '#a8edea')">Generate</button>
+        </div>
+
+        <div class="project">
+            <h3>Avatar</h3>
+            <p>Your AI Avatar</p>
+            <canvas id="avatar" width="200" height="200"></canvas>
+            <br>
+            <button onclick="generateAvatar('avatar')">Generate Avatar</button>
+        </div>
+    </div>
+
+    <script>
+        function generateImage(canvasId, title, color) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create gradient background
+            const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+            gradient.addColorStop(0, color);
+            gradient.addColorStop(1, adjustColor(color, -20));
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add title text
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 24px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(title, canvas.width / 2, canvas.height / 2);
+            
+            // Add subtitle
+            ctx.font = '16px Inter, sans-serif';
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fillText('Game Project', canvas.width / 2, canvas.height / 2 + 30);
+        }
+
+        function generateAvatar(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            
+            // Create circular gradient background
+            const gradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 0, canvas.width/2, canvas.height/2, canvas.width/2);
+            gradient.addColorStop(0, '#667eea');
+            gradient.addColorStop(1, '#764ba2');
+            
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Add initials
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 48px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('AA', canvas.width / 2, canvas.height / 2);
+        }
+
+        function adjustColor(color, amount) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * amount);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        // Generate all images on page load
+        window.onload = function() {
+            generateImage('rise-of-heroes', 'Rise of Heroes', '#667eea');
+            generateImage('arcane-arena', 'Arcane Arena', '#764ba2');
+            generateImage('raid-rush', 'Raid Rush', '#f093fb');
+            generateImage('atos', 'ATOS', '#4facfe');
+            generateImage('last-session', 'The Last Session', '#43e97b');
+            generateImage('caretaker', 'The Caretaker', '#fa709a');
+            generateImage('beat-menace', 'Beat Menace', '#ffecd2');
+            generateImage('judgement-day', 'Judgement Day', '#a8edea');
+            generateAvatar('avatar');
+        };
+    </script>
+</body>
+</html>
+

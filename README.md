@@ -1,1 +1,0 @@
-# alperenaydas.github.io

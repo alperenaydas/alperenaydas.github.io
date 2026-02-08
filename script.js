@@ -1,4 +1,30 @@
 const projects = {
+    'purpose-network-engine': {
+        title: 'Purpose Network Engine',
+        description: 'Custom C++ / Unity Authoritative Networking Middleware',
+        image: 'Purpose Network Engine',
+        headerImage: 'images/projects/pne-header.png',
+        details: `
+            <div class="project-images">
+                <img src="images/projects/pne1.gif" alt="Purpose Network Engine - Hybrid Architecture" class="detail-gif">
+                <img src="images/projects/pne2.gif" alt="Purpose Network Engine - Prediction & Reconciliation" class="detail-gif">
+                <img src="images/projects/pne3.gif" alt="Purpose Network Engine - Lag Compensation" class="detail-gif">
+                <img src="images/projects/pne4.gif" alt="Purpose Network Engine - Interest Management" class="detail-gif">
+            </div>
+            <h3>Project Overview</h3>
+            <p>A high-performance, hybrid networking solution designed to bridge the gap between high-level gameplay logic (Unity) and low-level transport protocols (Native C++). Built to solve the "fast-paced multiplayer" problem, this engine prioritizes authoritative state synchronization, cheating prevention, and bandwidth optimization without sacrificing the responsiveness of client movement.</p>
+            
+            <h3>Project Details and Technical Contributions</h3>
+            <p>Developed as a standalone technology demonstration to master the intricacies of replication and memory management. This project serves as a proof-of-concept for shipping competitive multiplayer titles on constrained networks.</p>
+            <ul>
+                <li><b>Hybrid Architecture:</b> Engineered a "Headless" C++ Authoritative Server that handles physics and logic, communicating with a Unity Client via a custom bit-packed UDP protocol to minimize packet overhead.</li>
+                <li><b>Responsiveness (Prediction & Reconciliation):</b> Implemented Client-Side Prediction to allow immediate input feedback, coupled with Server Reconciliation to gracefully correct desyncs caused by packet loss or latency jitter.</li>
+                <li><b>Competitive Integrity (Lag Compensation):</b> Built a Server-Side Rewind system with a 128-tick history buffer. This allows the server to "look back in time" to validate hit-scans against historical hitboxes, ensuring fair play for shooters.</li>
+                <li><b>Scalability (Interest Management):</b> Developed a Spatial Grid system to cull entity updates based on player proximity. This reduced bandwidth saturation allowed the engine to support 1,000+ concurrent bots in a single instance.</li>
+                <li><b>Optimization:</b> Achieved a Zero-Allocation architecture by engineering a memory-pooled network stack in C++, eliminating heap fragmentation and malloc overhead during the critical gameplay loop.</li>
+            </ul>
+        `
+    },
     'rise-of-heroes': {
         title: 'Rise of Heroes',
         description: 'Multiplayer 4X Strategy Game - Panteon',
@@ -160,6 +186,7 @@ const modalDetails = document.getElementById('modalDetails');
 const closeBtn = document.querySelector('.close');
 document.addEventListener('DOMContentLoaded', function() {
     initializeProjectModals();
+    initializeGifLightbox();
     initializeExperienceLinks();
     initializeResumeFunctionality();
     initializeSocialLinks();
@@ -188,8 +215,38 @@ function initializeProjectModals() {
     }
     
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.style.display === 'block') {
-            closeProjectModal();
+        if (e.key === 'Escape') {
+            const lightbox = document.getElementById('gifLightbox');
+            if (lightbox && lightbox.classList.contains('active')) {
+                closeGifLightbox();
+            } else if (modal.style.display === 'block') {
+                closeProjectModal();
+            }
+        }
+    });
+}
+
+function initializeGifLightbox() {
+    const lightbox = document.getElementById('gifLightbox');
+    const closeBtn = document.getElementById('gifLightboxClose');
+    
+    if (!lightbox) return;
+    
+    modalDetails.addEventListener('click', function(e) {
+        const gif = e.target.closest('.detail-gif');
+        if (gif) {
+            e.preventDefault();
+            openGifLightbox(gif.src, gif.alt);
+        }
+    });
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeGifLightbox);
+    }
+    
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeGifLightbox();
         }
     });
 }
@@ -211,6 +268,23 @@ function openProjectModal(projectId) {
     setTimeout(() => {
         modal.style.opacity = '1';
     }, 10);
+}
+
+function openGifLightbox(src, alt) {
+    const lightbox = document.getElementById('gifLightbox');
+    const lightboxImg = document.getElementById('gifLightboxImage');
+    if (!lightbox || !lightboxImg) return;
+    
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add('active');
+}
+
+function closeGifLightbox() {
+    const lightbox = document.getElementById('gifLightbox');
+    if (!lightbox) return;
+    
+    lightbox.classList.remove('active');
 }
 
 function closeProjectModal() {

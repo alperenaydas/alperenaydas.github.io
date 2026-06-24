@@ -624,6 +624,38 @@ body {
     line-height: 1.5;
 }
 
+.modal-links {
+    display: none;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.modal-external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border: 1px solid #404040;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.modal-external-link:hover {
+    border-color: #666666;
+    background-color: #2a2a2a;
+}
+
+.modal-external-link-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
 #modalDetails {
     color: #ffffff;
     line-height: 1.6;

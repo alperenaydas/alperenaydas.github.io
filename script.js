@@ -2,6 +2,7 @@ const projects = {
     'purpose-network-engine': {
         title: 'Purpose Network Engine',
         description: 'Custom C++ / Unity Authoritative Networking Middleware',
+        github: 'https://github.com/alperenaydas/unity-cpp-network',
         image: 'Purpose Network Engine',
         headerImage: 'images/projects/pne-header.png',
         details: `
@@ -28,6 +29,7 @@ const projects = {
     'rise-of-heroes': {
         title: 'Rise of Heroes',
         description: 'Multiplayer 4X Strategy Game - Panteon',
+        appStore: 'https://apps.apple.com/tr/app/rise-of-heroes-survival/id1673674692?l=tr',
         image: 'Rise of Heroes',
         headerImage: 'images/projects/kop-header.png',
         details: `
@@ -46,6 +48,7 @@ const projects = {
     'arcane-arena': {
         title: 'Arcane Arena',
         description: 'PvP Multiplayer Tower Defense Game - Panteon',
+        googlePlay: 'https://play.google.com/store/apps/details?id=com.panteon.arcanearena&hl=en',
         image: 'Arcane Arena',
         headerImage: 'images/projects/aa-header.png',
         details: `
@@ -62,6 +65,7 @@ const projects = {
     'raid-rush': {
         title: 'Raid Rush',
         description: 'Tower Defense Game - Panteon',
+        googlePlay: 'https://play.google.com/store/apps/details?id=com.wireless.defenseland&hl=en',
         image: 'Raid Rush',
         headerImage: 'images/projects/rr-header.webp',
         details: `
@@ -77,6 +81,7 @@ const projects = {
     'atos': {
         title: 'ATOS',
         description: '2D/3D Simulation Puzzle Game - MagaraJam#3',
+        itchIo: 'https://crosline.itch.io/at0s',
         image: 'ATOS',
         headerImage: 'images/projects/atos-header.png',
         details: `
@@ -95,6 +100,7 @@ const projects = {
     'last-session': {
         title: 'The Last Session',
         description: '2D DnD Simulator - MagaraJam#5',
+        itchIo: 'https://crosline.itch.io/the-last-session',
         image: 'The Last Session',
         headerImage: 'images/projects/tls-title.png',
         details: `
@@ -113,6 +119,7 @@ const projects = {
     'caretaker': {
         title: 'The Caretaker',
         description: '2D Platformer - MagaraJam2025',
+        itchIo: 'https://crosline.itch.io/the-caretaker',
         image: 'The Caretaker',
         headerImage: 'images/projects/caretaker.gif',
         details: `
@@ -183,7 +190,15 @@ const modalTitle = document.getElementById('modalTitle');
 const modalDescription = document.getElementById('modalDescription');
 const modalImage = document.getElementById('modalImage');
 const modalDetails = document.getElementById('modalDetails');
+const modalLinks = document.getElementById('modalLinks');
 const closeBtn = document.querySelector('.close');
+
+const projectLinkTypes = [
+    { key: 'github', label: 'View on GitHub', icon: 'images/icons/github.png' },
+    { key: 'appStore', label: 'View on App Store' },
+    { key: 'googlePlay', label: 'View on Google Play' },
+    { key: 'itchIo', label: 'View on itch.io' }
+];
 document.addEventListener('DOMContentLoaded', function() {
     initializeProjectModals();
     initializeGifLightbox();
@@ -260,6 +275,7 @@ function openProjectModal(projectId) {
     modalImage.src = project.headerImage || 'images/projects/default-header.png';
     modalImage.alt = project.title;
     modalDetails.innerHTML = project.details;
+    renderModalLinks(project);
     
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
@@ -268,6 +284,35 @@ function openProjectModal(projectId) {
     setTimeout(() => {
         modal.style.opacity = '1';
     }, 10);
+}
+
+function renderModalLinks(project) {
+    if (!modalLinks) return;
+
+    modalLinks.innerHTML = '';
+
+    projectLinkTypes.forEach(({ key, label, icon }) => {
+        if (!project[key]) return;
+
+        const link = document.createElement('a');
+        link.className = 'modal-external-link';
+        link.href = project[key];
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+
+        if (icon) {
+            const img = document.createElement('img');
+            img.src = icon;
+            img.alt = '';
+            img.className = 'modal-external-link-icon';
+            link.appendChild(img);
+        }
+
+        link.appendChild(document.createTextNode(label));
+        modalLinks.appendChild(link);
+    });
+
+    modalLinks.style.display = modalLinks.children.length ? 'flex' : 'none';
 }
 
 function openGifLightbox(src, alt) {
